@@ -8,6 +8,7 @@ az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_
 ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME --account-name $STORAGE_ACCOUNT_NAME --query '[0].value' -o tsv)
 #If already blob is created ignore the below steps
 az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME --account-key $ACCOUNT_KEY
+#Display the Secrect keys
 echo $ACCOUNT_KEY
 #Helps to TF create or access the exixting state file
 export ARM_ACCESS_KEY=$ACCOUNT_KEY
