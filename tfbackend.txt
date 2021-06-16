@@ -12,3 +12,7 @@ az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOU
 echo $ACCOUNT_KEY
 #Helps to TF create or access the exixting state file
 export ARM_ACCESS_KEY=$ACCOUNT_KEY
+#Import the Existing RG
+#Only one resources can be imported in terraform
+terraform import azurerm_resource_group.$resource_group_name "/subscriptions/$subscriptions_id/resourceGroups/$resource_group_name"
+
