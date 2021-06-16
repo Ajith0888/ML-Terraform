@@ -10,7 +10,7 @@ variable "vnet_name" {
 }
 
 
-variable "subnets" {
+variable "mysubnets" {
     type = list(string)
     description = "subnets to be created"
     default = ["app", "mldb"]
