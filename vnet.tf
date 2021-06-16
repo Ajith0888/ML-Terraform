@@ -14,7 +14,7 @@ resource "azurerm_subnet" "mysubnets" {
 
     name = var.mysubnets[count.index]
     resource_group_name = azurerm_resource_group.rg-ajith-oneamerica.name
-    virtual_network_name = azurerm_virtual_network.dev-vnet.name
+    virtual_network_name = azurerm_virtual_network.dev-vnet
     address_prefixes = [ cidrsubnet(var.vnetrange,8,count.index) ]
 
     depends_on = [
