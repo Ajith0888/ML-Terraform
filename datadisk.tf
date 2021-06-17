@@ -9,7 +9,7 @@ resource "azurerm_managed_disk" "mldisk" {
 
 resource "azurerm_virtual_machine_data_disk_attachment" "mldisk" {
   managed_disk_id    = azurerm_managed_disk.mldisk.id
-  virtual_machine_id = azurerm_virtual_machine.mlvm.id
+  virtual_machine_id = azurerm_linux_virtual_machine.mlvm.id
   lun                = "0"
   caching            = "ReadOnly"
 }
