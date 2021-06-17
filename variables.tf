@@ -6,7 +6,7 @@ variable rg_name {
 
 variable "vnet_name" {
     type      = string
-    default   = "dev-vnet"
+    default   = "mlvnet"
 }
 
 variable "nsg_name" {
