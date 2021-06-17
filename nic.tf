@@ -5,7 +5,7 @@ resource "azurerm_network_interface" "mlnic" {
 
     ip_configuration {
       name = "mlnicconfig"
-      subnet_id = azurerm_subnet.subnets[0].id
+      subnet_id = azurerm_subnet.mysubnets[0].id
       private_ip_address_allocation = "Dynamic"
       public_ip_address_id = azurerm_public_ip.mlpublicip.id
     }
@@ -21,7 +21,7 @@ resource "azurerm_network_interface" "mlnic" {
 }
 
 resource "azurerm_network_interface_security_group_association" "web" {
-    network_interface_id = azurerm_network_interface.vmnic.id
-    network_security_group_id = azurerm_network_security_group.webnsg.id
+    network_interface_id = azurerm_network_interface.mlnic.id
+    network_security_group_id = azurerm_network_security_group.mlnsg.id
   
 }
