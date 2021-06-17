@@ -24,6 +24,16 @@ variable "nicname" {
     default   = "mlnic"
 }
 
+variable "storaccountname" {
+    type      = string
+    default   = "mlstorageaccount"
+}
+
+variable "vmname" {
+    type      = string
+    default   = "mlvm-node1"
+}
+
 
 variable "mysubnets" {
     type = list(string)
