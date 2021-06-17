@@ -20,7 +20,7 @@ resource "azurerm_network_interface" "mlnic" {
   
 }
 
-resource "azurerm_network_interface_security_group_association" "web" {
+resource "azurerm_network_interface_security_group_association" "mlnic" {
     network_interface_id = azurerm_network_interface.mlnic.id
     network_security_group_id = azurerm_network_security_group.mlnsg.id
   
