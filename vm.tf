@@ -9,7 +9,7 @@ resource "azurerm_storage_account" "mlstorageaccount" {
 
 
 resource "azurerm_linux_virtual_machine" "mlvm" {
-    name = var.vmname
+    name                = var.vmname
     location            = azurerm_resource_group.rg-ajith-oneamerica.location
     resource_group_name = azurerm_resource_group.rg-ajith-oneamerica.name
     size = "Standard_DS1_v2"
@@ -31,8 +31,8 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
   source_image_reference {
     publisher = "marklogic"
     offer     = "marklogic-developer-10"
-    sku       = "ml10064_centos8s"
-    version   = "latest"
+    sku       = "ml10064_centos8"
+    version   = "1.0.0"
   }
 
   boot_diagnostics {
