@@ -19,6 +19,12 @@ variable "publicip_name" {
     default   = "mlpublicip"
 }
 
+variable "nicname" {
+    type      = string
+    default   = "mlnic"
+}
+
+
 variable "mysubnets" {
     type = list(string)
     description = "subnets to be created"
