@@ -9,6 +9,10 @@ variable "vnet_name" {
     default   = "dev-vnet"
 }
 
+variable "nsg_name" {
+    type      = string
+    default   = "mlnsg"
+}
 
 variable "mysubnets" {
     type = list(string)
