@@ -1,9 +1,9 @@
 resource "azurerm_storage_account" "mlstorageaccount" {
-    name = var.storaccountname
-    location            = azurerm_resource_group.rg-ajith-oneamerica.location
-    resource_group_name = azurerm_resource_group.rg-ajith-oneamerica.name
-    account_replication_type = "LRS"
-    account_tier = "Standard"
+    name                      = var.storaccountname
+    location                  = azurerm_resource_group.rg-ajith-oneamerica.location
+    resource_group_name       = azurerm_resource_group.rg-ajith-oneamerica.name
+    account_replication_type  = "LRS"
+    account_tier              = "Standard"
   
 }
 

@@ -1,10 +1,15 @@
-variable rg_name {
+variable rgname {
   type        = string
   default     = "rg-ajith-oneamerica"
   description = "Resource Name"
 }
+variable "location" {
+    type = string
+    description = "location where resources are to be created"
+    default = "westeurope"
+}
 
-variable "vnet_name" {
+variable "vnets_name" {
     type      = string
     default   = "mlvnet"
 }
