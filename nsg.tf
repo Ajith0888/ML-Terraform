@@ -1,7 +1,7 @@
-resource "azurerm_network_security_group" "webnsg" {
-    name = local.webnsgname
-    resource_group_name = local.rgname
-    location = var.location
+resource "azurerm_network_security_group" "mlnsg" {
+    name = mlnsg
+    location            = azurerm_resource_group.rg-ajith-oneamerica.location
+    resource_group_name = azurerm_resource_group.rg-ajith-oneamerica.name
 
     security_rule  {
       access = "Allow"
