@@ -26,7 +26,7 @@ variable "nicname" {
 
 variable "storaccountname" {
     type      = string
-    default   = "mlstorageaccount"
+    default   = "mlstorageacctnode"
 }
 
 variable "vmname" {
