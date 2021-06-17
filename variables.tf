@@ -14,6 +14,11 @@ variable "nsg_name" {
     default   = "mlnsg"
 }
 
+variable "publicip_name" {
+    type      = string
+    default   = "mlpublicip"
+}
+
 variable "mysubnets" {
     type = list(string)
     description = "subnets to be created"
