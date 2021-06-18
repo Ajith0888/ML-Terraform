@@ -5,7 +5,7 @@ variable rgname {
 }
 variable "location" {
     type = string
-    description = "location where resources are to be created"
+    description = "location where resources deployed"
     default = "westeurope"
 }
 
