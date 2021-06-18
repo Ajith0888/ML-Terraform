@@ -71,6 +71,15 @@ variable "vmsku" {
     default   = "Standard_DS1_v2"
 }
 
+variable "vmusername" {
+    type      = string
+    default   = "mladmin"
+}
+
+variable "vmpasswd" {
+    type      = string
+    default   = "Ml@dmin321"
+}
 variable "mysubnets" {
     type = list(string)
     description = "subnets to be created"

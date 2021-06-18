@@ -2,25 +2,25 @@ resource "azurerm_storage_account" "mlstorageaccount" {
     name                = "${var.storaccountname}"
     location            = "${var.location}"
     resource_group_name = "${var.rgname}"
-    account_replication_type  = "LRS"
-    account_tier              = "Standard"
+    account_replication_type  = "${st_repltype}"
+    account_tier              = "${var.st_accttier}"
   
 }
 
 
 resource "azurerm_linux_virtual_machine" "mlvm" {
-    name                = var.vmname
+    name                = "${var.vmname}"
     location            = "${var.location}"
     resource_group_name = "${var.rgname}"
     size = "${var.vmsku}"
-    admin_username = "mladmin"
-    admin_password = "Ml@dmin321"
+    admin_username = "${var.vmusername}"
+    admin_password = "${var.vmpasswd}"
     network_interface_ids = [ azurerm_network_interface.mlnic.id ]
     disable_password_authentication = false
 
     os_disk {
     caching              = "ReadWrite"
-    storage_account_type = "{var.os_disktype}"
+    storage_account_type = "${var.os_disktype}"
   }
 
   source_image_reference {
