@@ -4,9 +4,6 @@ resource "azurerm_virtual_network" "myvnet" {
   resource_group_name = "${var.rgname}"
   address_space       = ["10.0.0.0/16"]
 
-  tags = {
-    environment = "${var.vnet_name}"
-  }
 }
 
 resource "azurerm_subnet" "mysubnets" {

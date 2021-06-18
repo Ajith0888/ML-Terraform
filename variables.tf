@@ -9,7 +9,7 @@ variable "location" {
     default = "westeurope"
 }
 
-variable "vnets_name" {
+variable "vnet_name" {
     type      = string
     default   = "mlvnet"
 }
