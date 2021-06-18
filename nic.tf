@@ -1,7 +1,7 @@
 resource "azurerm_network_interface" "mlnic" {
     name = var.nicname
-    location            = azurerm_resource_group.rg-ajith-oneamerica.location
-    resource_group_name = azurerm_resource_group.rg-ajith-oneamerica.name
+    location            = "${var.location}"
+    resource_group_name = "${var.rgname}"
 
     ip_configuration {
       name = "mlnicconfig"

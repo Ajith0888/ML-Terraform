@@ -1,10 +1,10 @@
   resource "azurerm_managed_disk" "mldisk" {
   name                 = "${var.vmname}-disk1"
-  location             = azurerm_resource_group.rg-ajith-oneamerica.location
-  resource_group_name  = azurerm_resource_group.rg-ajith-oneamerica.name
-  storage_account_type = "Standard_LRS"
+  location            = "${var.location}"
+  resource_group_name = "${var.rgname}"
+  storage_account_type = "${var.st_accttype}"
   create_option        = "Empty"
-  disk_size_gb         = 32
+  disk_size_gb         = "${var.datadisksize}"
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "mldisk" {

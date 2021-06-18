@@ -1,7 +1,7 @@
 resource "azurerm_network_security_group" "mlnsg" {
-    name = var.nsg_name
-    location            = azurerm_resource_group.rg-ajith-oneamerica.location
-    resource_group_name = azurerm_resource_group.rg-ajith-oneamerica.name
+    name                = "${var.nsg_name}"
+    location            = "${var.location}"
+    resource_group_name = "${var.rgname}"
 
     security_rule  {
       access = "Allow"
@@ -63,6 +63,7 @@ resource "azurerm_network_security_group" "mlnsg" {
       source_address_prefix = "*"
       source_port_range = "*"
     } 
+
     depends_on = [
       azurerm_virtual_network.myvnet,
       azurerm_subnet.mysubnets
