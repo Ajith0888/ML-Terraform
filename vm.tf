@@ -2,7 +2,7 @@ resource "azurerm_storage_account" "mlstorageaccount" {
     name                = "${var.storaccountname}"
     location            = "${var.location}"
     resource_group_name = "${var.rgname}"
-    account_replication_type  = "${st_repltype}"
+    account_replication_type  = "${var.st_repltype}"
     account_tier              = "${var.st_accttier}"
   
 }
