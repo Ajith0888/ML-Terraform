@@ -45,9 +45,13 @@ variable "st_accttype" {
     type      = string
     default   = "Standard_LRS"
 }
-variable "st_accttype" {
+variable "st_repltype" {
     type      = string
-    default   = "Standard_LRS"
+    default   = "LRS"
+}
+variable "st_accttier" {
+    type      = string
+    default   = "Standard"
 }
 variable "datadisksize" {
     type      = string
