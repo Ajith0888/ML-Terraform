@@ -65,8 +65,8 @@ resource "azurerm_network_security_group" "mlnsg" {
     } 
 
     depends_on = [
-      azurerm_virtual_network.myvnet,
-      azurerm_subnet.mysubnets
+      azurerm_virtual_network.mlvnet,
+      azurerm_subnet.mlsubnets
     ]
 
   

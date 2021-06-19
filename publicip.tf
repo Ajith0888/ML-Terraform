@@ -1,5 +1,5 @@
 resource "azurerm_public_ip" "mlpublicip" {
-    name = var.publicip_name
+    name                = "${var.publicip_name}"
     location            = "${var.location}"
     resource_group_name = "${var.rgname}"
     allocation_method = "Dynamic"

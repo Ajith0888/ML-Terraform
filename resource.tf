@@ -1,6 +1,6 @@
 
-resource "azurerm_resource_group" "rg-ajith-oneamerica" {
-  name     = "rg-ajith-oneamerica"
-  location = "West Europe"
+resource "azurerm_resource_group" "mlrg" {
+  name     = "${var.rgname}"
+  location = "${var.location}"
 }
 
