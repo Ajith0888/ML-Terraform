@@ -23,6 +23,12 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
     storage_account_type = "${var.os_disktype}"
   }
 
+  plan {
+    name      = "ml10064_centos8"
+    publisher = "marklogic"
+    product   = "marklogic-developer-10"
+  }
+
   source_image_reference {
     publisher = "marklogic"
     offer     = "marklogic-developer-10"
