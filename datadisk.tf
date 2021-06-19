@@ -5,6 +5,10 @@
   storage_account_type = "${var.st_accttype}"
   create_option        = "Empty"
   disk_size_gb         = "${var.datadisksize}"
+
+  depends_on = [
+      azurerm_resource_group.mlrg
+  ]  
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "mldisk" {

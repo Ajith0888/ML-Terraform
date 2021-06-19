@@ -4,7 +4,10 @@ resource "azurerm_storage_account" "mlstorageaccount" {
     resource_group_name = "${var.rgname}"
     account_replication_type  = "${var.st_repltype}"
     account_tier              = "${var.st_accttier}"
-  
+    
+    depends_on = [
+      azurerm_resource_group.mlrg
+    ]  
 }
 
 
