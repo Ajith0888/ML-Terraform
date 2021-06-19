@@ -11,9 +11,9 @@ resource "azurerm_virtual_network" "mlvnet" {
 }
 
 resource "azurerm_subnet" "mlsubnets" {
-    count = length(var.mlsubnets)
+    count = length(var.subnets)
 
-    name = var.mlsubnets[count.index]
+    name = var.subnets[count.index]
     resource_group_name = "${var.rgname}"
     virtual_network_name = azurerm_virtual_network.mlvnet.name
     address_prefixes = [ cidrsubnet(var.vnetrange,8,count.index) ]

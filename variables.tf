@@ -80,7 +80,7 @@ variable "vmpasswd" {
     type      = string
     default   = "Ml@dmin321"
 }
-variable "mysubnets" {
+variable "subnets" {
     type = list(string)
     description = "subnets to be created"
     default = ["app", "mldb"]
