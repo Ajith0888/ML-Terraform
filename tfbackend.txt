@@ -3,7 +3,7 @@ RESOURCE_GROUP_NAME=$rgname
 STORAGE_ACCOUNT_NAME=$storaccountname
 CONTAINER_NAME=$Blobname
 LOCATION=$location
-#create a resourceGroup for terraform backend
+#create a separate resourceGroup only for terraform backend. This helps to manage the resources. 
 az group create --name $RESOURCE_GROUP_NAME --location $LOCATION
 #If already storage acct is created ignore the below steps
 az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME --sku Standard_LRS --encryption-services blob
