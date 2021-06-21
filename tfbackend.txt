@@ -18,4 +18,5 @@ export ARM_ACCESS_KEY=$ACCOUNT_KEY
 #Import the Existing RG
 #Only one resources can be imported in terraform
 terraform import azurerm_resource_group.$resource_group_name "/subscriptions/$subscriptions_id/resourceGroups/$resource_group_name"
-
+#To Use the MarkLogic OS Images need to fetch the source_image_reference & plan details.
+az vm image list --all -p MarkLogic -o table
