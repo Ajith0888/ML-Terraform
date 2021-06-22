@@ -1,0 +1,54 @@
+"vnetPrefix": {
+        "type": "String",
+        "value": "10.3.0.0/16"
+      },
+      "subnetName": {
+        "type": "String",
+        "value": "vnet-vm-subnet"
+      },
+      "vmSubnetPrefix": {
+        "type": "String",
+        "value": "10.3.0.0/24"
+      },
+      "appGatewaySubnetPrefix": {
+        "type": "String",
+        "value": "10.3.1.0/24"
+      },
+
+VM Build:
+HighAvailability - On
+        "imageOffer": "marklogic-developer-10",
+        "imageSku": "ml10061_centos8",
+            "imagePublisher": "marklogic",
+   "bootstrapNodeExtSetting": {
+            "vmName": "[variables('vmSetting').vmName]",
+            "location": "[variables('clusterLocation')]",
+            "bootstrapNodeScriptUrl": "[variables('scriptUrls').bootstrapNodeScriptUrl]",
+            "initScriptUrl": "[variables('scriptUrls').initScriptUrl]",
+            "nodePublicIpName": "[variables('nodePublicIpSetting').namev4]",
+            "cmdPrefix": "[concat('sudo sh config-bootstrap-node.sh ',parameters('AdminUser'),' ''',parameters('AdminPassword'),''' anyauth 5 10 public')]"
+        },
+     
+        "bootstrapNodeExtSetting": {
+            "vmName": "[variables('vmSetting').vmName]",
+            "location": "[variables('clusterLocation')]",
+            "bootstrapNodeScriptUrl": "[variables('scriptUrls').bootstrapNodeScriptUrl]",
+            "initScriptUrl": "[variables('scriptUrls').initScriptUrl]",
+            "nodePublicIpName": "[variables('nodePublicIpSetting').namev4]",
+            "cmdPrefix": "[concat('sudo sh config-bootstrap-node.sh ',parameters('AdminUser'),' ''',parameters('AdminPassword'),''' anyauth 5 10 public')]"
+        },
+        "additionalNodeExtSetting": {
+            "vmName": "[variables('vmSetting').vmName]",
+            "location": "[variables('clusterLocation')]",
+            "additionalNodeExtCount": "[sub(parameters('NumberOfNodes'),1)]",
+            "additionalNodeScriptUrl": "[variables('scriptUrls').additionalNodeScriptUrl]",
+            "initScriptUrl": "[variables('scriptUrls').initScriptUrl]",
+            "vmLocation": "[variables('vmSetting').location]",
+            "nodePublicIpName": "[variables('nodePublicIpSetting').namev4]",
+            "haExtXqyUrl": "[variables('scriptUrls').haExtXqyUrl]",
+            "highAvailabilityScriptUrl": "[variables('scriptUrls').highAvailabilityScriptUrl]",
+            "cmdPrefix": "[concat('sudo sh config-additional-node.sh ',parameters('AdminUser'),' ''',parameters('AdminPassword'),''' anyauth 5 10 ',string(variables('enableHA')))]"
+        }
+
+
+https://github.com/marklogic/cloud-enablement-azure/tree/master/scripts
