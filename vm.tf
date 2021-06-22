@@ -70,7 +70,7 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
     user        = "${var.vmusername}"
     password    = ""
     private_key = file("~/.ssh/id_rsa.pub")
-    host        = mlvm.mlpublicip.id
+    host        = azurerm_linux_virtual_machine.mlvm.public_ip_address
   }
 
 
