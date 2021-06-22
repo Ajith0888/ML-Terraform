@@ -20,7 +20,7 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
     #admin_password = "${var.vmpasswd}"
     #Its better to use SSH Keys
     admin_ssh_key {
-      username = "${var.username}"
+      username = "${var.vmusername}"
       public_key = file("~/.ssh/id_rsa.pub")
     }
     network_interface_ids = [ azurerm_network_interface.mlnic.id ]
