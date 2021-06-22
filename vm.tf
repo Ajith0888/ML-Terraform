@@ -65,13 +65,13 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
   }
   
   # Login to the VM with the aws key.
-  #connection {
-  #  type        = "ssh"
-  #  user        = "${var.vmusername}"
-  #  password    = ""
-  #  private_key = file("~/.ssh/id_rsa.pub")
-  #  host        = azurerm_linux_virtual_machine.mlvm.public_ip_address
-  #}
+  connection {
+    type        = "ssh"
+    user        = "${var.vmusername}"
+    password    = ""
+    private_key = file("~/.ssh/id_rsa")
+    host        = azurerm_linux_virtual_machine.mlvm.public_ip_address
+  }
 
 
  depends_on = [
