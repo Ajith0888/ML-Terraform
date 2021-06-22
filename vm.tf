@@ -16,8 +16,13 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
     location            = "${var.location}"
     resource_group_name = "${var.rgname}"
     size = "${var.vmsku}"
-    admin_username = "${var.vmusername}"
-    admin_password = "${var.vmpasswd}"
+    #admin_username = "${var.vmusername}"
+    #admin_password = "${var.vmpasswd}"
+    #Its better to use SSH Keys
+    admin_ssh_key {
+      username = "${var.username}"
+      public_key = file("~/.ssh/id_rsa.pub")
+    }
     network_interface_ids = [ azurerm_network_interface.mlnic.id ]
     disable_password_authentication = false
 

@@ -78,7 +78,7 @@ variable "vmusername" {
 
 variable "vmpasswd" {
     type      = string
-    default   = "Ml@dmin321"
+    default   = ""
 }
 variable "subnets" {
     type = list(string)
