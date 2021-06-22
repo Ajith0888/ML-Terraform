@@ -2,7 +2,6 @@
   # The source is the location of the bash script
   # on the local linux box you are executing terraform
   # from.  The destination is on the New Azure VM.
-  {
   provisioner "file" {
     source      = "init-marklogic.sh"
     destination = "/tmp/init-marklogic.sh"
@@ -27,4 +26,3 @@
   depends_on = [
       azurerm_linux_virtual_machine.mlvm
     ]
-  }
