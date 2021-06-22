@@ -16,7 +16,7 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
     location            = "${var.location}"
     resource_group_name = "${var.rgname}"
     size = "${var.vmsku}"
-    #admin_username = "${var.vmusername}"
+    admin_username = "${var.vmusername}"
     #admin_password = "${var.vmpasswd}"
     #Its better to use SSH Keys
     admin_ssh_key {
