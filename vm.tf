@@ -53,7 +53,7 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
   # on the local linux box you are executing terraform
   # from.  The destination is on the New Azure VM.
   provisioner "file" {
-    source      = "init-marklogic.sh"
+    source      = "./init-marklogic.sh"
     destination = "/tmp/init-marklogic.sh"
   }
   # Change permissions on bash script and execute on VM.
