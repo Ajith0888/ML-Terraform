@@ -71,7 +71,30 @@ function LOG {
   echo "[$timestamp] [$level] $msg" |& tee -a $LOG
 }
 
+#######################################################
+# Parse the command line
 
+OPTIND=1
+while getopts ":a:p:r:u:" opt; do
+  case "$opt" in
+    a) AUTH_MODE=$OPTARG ;;
+    p) PASS=$OPTARG ;;
+    r) SEC_REALM=$OPTARG ;;
+    u) USER=$OPTARG ;;
+    \?) echo "Unrecognized option: -$OPTARG" >&2; exit 1 ;;
+  esac
+done
+shift $((OPTIND-1))
+
+if [ $# -ge 1 ]; then
+  BOOTSTRAP_HOST=$1
+  shift
+fi
+
+# Suppress progress meter, but still show errors
+CURL="curl -s -S"
+# Add authentication related options, required once security is initialized
+AUTH_CURL="${CURL} --${AUTH_MODE} --user ${USER}:${PASS}"
 
 #######################################################
 # Bring up the first (or only) host in the cluster. The following
