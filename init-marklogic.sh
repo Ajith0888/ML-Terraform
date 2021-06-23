@@ -45,31 +45,32 @@ function restart_check {
   exit 1
 }
 
+######################################################################################################
+# Function     : INFO, WARN, ERROR
+# Description  : Log out the message in log file and console
+# Usage        : INFO("message"), WARN("message"), ERROR("message")
+######################################################################################################
 
-#######################################################
-# Parse the command line
+function INFO {
+  LOG "INFO" $@
+}
 
-OPTIND=1
-while getopts ":a:p:r:u:" opt; do
-  case "$opt" in
-    a) AUTH_MODE=$OPTARG ;;
-    p) PASS=$OPTARG ;;
-    r) SEC_REALM=$OPTARG ;;
-    u) USER=$OPTARG ;;
-    \?) echo "Unrecognized option: -$OPTARG" >&2; exit 1 ;;
-  esac
-done
-shift $((OPTIND-1))
+function WARN {
+  LOG "WARN" $@
+}
 
-if [ $# -ge 1 ]; then
-  BOOTSTRAP_HOST=$1
-  shift
-fi
+function ERROR {
+  LOG "ERROR" $@
+}
 
-# Suppress progress meter, but still show errors
-CURL="curl -s -S"
-# Add authentication related options, required once security is initialized
-AUTH_CURL="${CURL} --${AUTH_MODE} --user ${USER}:${PASS}"
+function LOG {
+  level="$1"
+  shift 1
+  msg="$@"
+  timestamp=`date +%Y-%m-%d:%H:%M:%S:%3N`
+  echo "[$timestamp] [$level] $msg" |& tee -a $LOG
+}
+
 
 
 #######################################################
@@ -80,6 +81,8 @@ AUTH_CURL="${CURL} --${AUTH_MODE} --user ${USER}:${PASS}"
 # GET /admin/v1/timestamp is used to confirm restarts.
 
 # (1) Initialize the server
+INFO "Sleeping for 1 minute to ensure node availability"
+sleep 60
 echo "Initializing $BOOTSTRAP_HOST..."
 $CURL -X POST -d "" http://${BOOTSTRAP_HOST}:8001/admin/v1/init
 sleep 10
@@ -99,6 +102,7 @@ if [ "$TIMESTAMP" == "" ]; then
 fi
 
 # Test for successful restart
+INFO "Checking server restart"
 restart_check $BOOTSTRAP_HOST $TIMESTAMP $LINENO
 
 echo "Initialization complete for $BOOTSTRAP_HOST..."
