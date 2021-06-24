@@ -63,7 +63,7 @@ variable "os_disktype" {
 }
 variable "vmname" {
     type      = string
-    default   = "mlvm-node1"
+    default   = "mlvm-node"
 }
 
 variable "vmsku" {

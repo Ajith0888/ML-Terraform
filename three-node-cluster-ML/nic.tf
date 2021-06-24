@@ -1,10 +1,11 @@
 resource "azurerm_network_interface" "mlnic" {
-    name                = "${var.nicname}"
+    count               = 3
+    name                = "${var.nicname}${count.index}"
     location            = "${var.location}"
     resource_group_name = "${var.rgname}"
 
     ip_configuration {
-      name = "mlnicconfig"
+      name = "${var.nicname}${count.index}"
       subnet_id = azurerm_subnet.mlsubnets[0].id
       private_ip_address_allocation = "Dynamic"
       public_ip_address_id = azurerm_public_ip.mlpublicip.id

@@ -12,7 +12,8 @@ resource "azurerm_storage_account" "mlstorageaccount" {
 
 
 resource "azurerm_linux_virtual_machine" "mlvm" {
-    name                = "${var.vmname}"
+    count               = 3
+    name                = "${var.vmname}${count.index}"
     location            = "${var.location}"
     resource_group_name = "${var.rgname}"
     size = "${var.vmsku}"

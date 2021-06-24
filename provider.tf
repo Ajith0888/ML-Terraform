@@ -1,5 +1,5 @@
 # Configure the Azure provider
-provider "azurerm" { 
+provider "azurerm" {
   features {}
 }
 
