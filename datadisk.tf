@@ -1,14 +1,14 @@
-  resource "azurerm_managed_disk" "mldisk" {
+resource "azurerm_managed_disk" "mldisk" {
   name                 = "${var.vmname}-disk1"
-  location            = "${var.location}"
-  resource_group_name = "${var.rgname}"
-  storage_account_type = "${var.st_accttype}"
+  location             = var.location
+  resource_group_name  = var.rgname
+  storage_account_type = var.st_accttype
   create_option        = "Empty"
-  disk_size_gb         = "${var.datadisksize}"
+  disk_size_gb         = var.datadisksize
 
   depends_on = [
-      azurerm_resource_group.mlrg
-  ]  
+    azurerm_resource_group.mlrg
+  ]
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "mldisk" {
@@ -18,8 +18,8 @@ resource "azurerm_virtual_machine_data_disk_attachment" "mldisk" {
   caching            = "ReadOnly"
 
   depends_on = [
-   azurerm_linux_virtual_machine.mlvm
-   ]
+    azurerm_linux_virtual_machine.mlvm
+  ]
 
 
 }

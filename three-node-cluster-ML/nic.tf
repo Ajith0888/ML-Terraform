@@ -1,7 +1,7 @@
 resource "azurerm_network_interface" "mlnic" {
-    name                = "${var.nicname}"
-    location            = "${var.location}"
-    resource_group_name = "${var.rgname}"
+    name                = var.nicname
+    location            = var.location
+    resource_group_name = var.rgname
 
     ip_configuration {
       name = "mlnicconfig"

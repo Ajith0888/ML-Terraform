@@ -1,6 +1,6 @@
 locals {
 
-    rgname = "rg-ajith-oneamerica"
-    
+  rgname = "rg-ajith-oneamerica"
+
 
 }
