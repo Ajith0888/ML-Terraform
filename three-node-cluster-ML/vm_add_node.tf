@@ -10,13 +10,6 @@ resource "azurerm_storage_account" "mlstorageaccount" {
   ]
 }
 
-resource "azurerm_availability_set" "avset" {
-  location = var.location
-  name = var.avset
-  resource_group_name = var.rgname
-  platform_fault_domain_count = 3
-  platform_update_domain_count = 20
-}
 
 resource "azurerm_linux_virtual_machine" "mlvm" {
   name                = var.vmname
@@ -24,7 +17,6 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
   resource_group_name = var.rgname
   size                = var.vmsku
   admin_username      = var.vmusername
-  availability_set_id = azurerm_availability_set.avset.id
   #admin_password = "${var.vmpasswd}"
   #Its better to use SSH Keys
   admin_ssh_key {

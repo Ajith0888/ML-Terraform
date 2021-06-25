@@ -9,3 +9,15 @@ resource "azurerm_public_ip" "mlpublicip" {
   ]
 
 }
+
+resource "azurerm_public_ip" "appGatewayIp" {
+  name                = "${var.appgw}-appGatewayIp"
+  location            = var.location
+  resource_group_name = var.rgname
+  allocation_method   = "Dynamic"
+
+  depends_on = [
+    azurerm_network_security_group.mlnsg
+  ]
+
+}

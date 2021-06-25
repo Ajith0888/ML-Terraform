@@ -91,3 +91,15 @@ variable "vnetrange" {
   description = "range of the vnet"
   default     = "10.0.0.0/16"
 }
+
+variable "avset" {
+  type = string
+  description = "Availability Set"
+  default = "mlavset"
+}
+
+variable "appgw" {
+  type = string
+  description = "Availability Set"
+  default = "mlAppGateway"
+}
