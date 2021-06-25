@@ -72,6 +72,14 @@ resource "azurerm_application_gateway" "network" {
     request_timeout       = 1
   }
 
+  backend_http_settings {
+    name                  = "${azurerm_virtual_network.vnet.name}-be-htst-8000"
+    cookie_based_affinity = "Enabled"
+    port                  = 8000
+    protocol              = "Http"
+    request_timeout       = 30
+  }
+ 
   http_listener {
     name                           = "${azurerm_virtual_network.vnet.name}-httplstn"
     frontend_ip_configuration_name = "${azurerm_virtual_network.vnet.name}-feip"
