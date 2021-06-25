@@ -39,4 +39,17 @@ resource "azurerm_application_gateway" "appgw" {
     tier = "Standard_v2"
     capacity = 2
   }
+
+  probe {
+    interval = 30
+    name = "health"
+    host = "test.marklogic.com"
+    path = "/"
+    protocol = "http"
+    timeout = 30
+    unhealthy_threshold = 3
+    match {
+      status_code = ["200-401"]
+    }
+  }
 }
