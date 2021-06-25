@@ -16,14 +16,14 @@ resource "azurerm_subnet" "sub1" {
   name                 = "my-subnet-1"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes       = ["10.254.0.0/24"]
+  address_prefixes     = ["10.254.0.0/24"]
 }
 
 resource "azurerm_subnet" "sub2" {
   name                 = "my-subnet-2"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes       = ["10.254.2.0/24"]
+  address_prefixes     = ["10.254.2.0/24"]
 }
 
 resource "azurerm_public_ip" "pip" {
@@ -79,7 +79,7 @@ resource "azurerm_application_gateway" "network" {
     protocol              = "Http"
     request_timeout       = 30
   }
- 
+
   http_listener {
     name                           = "${azurerm_virtual_network.vnet.name}-httplstn"
     frontend_ip_configuration_name = "${azurerm_virtual_network.vnet.name}-feip"
@@ -93,5 +93,18 @@ resource "azurerm_application_gateway" "network" {
     http_listener_name         = "${azurerm_virtual_network.vnet.name}-httplstn"
     backend_address_pool_name  = "${azurerm_virtual_network.vnet.name}-beap"
     backend_http_settings_name = "${azurerm_virtual_network.vnet.name}-be-htst"
+  }
+
+  probe {
+    interval            = 30
+    name                = "health"
+    host                = "test.marklogic.com"
+    path                = "/"
+    protocol            = "http"
+    timeout             = 30
+    unhealthy_threshold = 3
+    match {
+      status_code = ["200-401"]
+    }
   }
 }
