@@ -30,7 +30,7 @@ resource "azurerm_public_ip" "pip" {
   name                         = "my-pip-12345"
   location                     = "${azurerm_resource_group.rg.location}"
   resource_group_name          = "${azurerm_resource_group.rg.name}"
-  public_ip_address_allocation = "dynamic"
+  public_ip_address_allocation = "Dynamic"
 }
 
 # Create an application gateway
