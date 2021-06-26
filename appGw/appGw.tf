@@ -1,6 +1,6 @@
 # Create a resource group
 resource "azurerm_resource_group" "rg" {
-  name     = "my-rg-application-gateway-123"
+  name     = "my-rg-application-gateway-12345"
   location = "westeurope"
 }
 
@@ -38,7 +38,7 @@ resource "azurerm_public_ip" "pip" {
 resource "azurerm_application_gateway" "network" {
   name                = "my-application-gateway-12345"
   resource_group_name = azurerm_resource_group.rg.name
-  location            = "West US"
+  location            = "westeurope"
 
   sku {
     name     = "Standard_v2"
