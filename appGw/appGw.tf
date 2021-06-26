@@ -1,6 +1,6 @@
 # Create a resource group
 resource "azurerm_resource_group" "rg" {
-  name     = "my-rg-application-gateway-12345"
+  name     = "my-rg-application-gateway-123"
   location = "West US"
 }
 
@@ -30,7 +30,7 @@ resource "azurerm_public_ip" "pip" {
   name                = "my-pip-12345"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
 }
 
 # Create an application gateway
