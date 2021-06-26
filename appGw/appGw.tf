@@ -1,7 +1,7 @@
 # Create a resource group
 resource "azurerm_resource_group" "rg" {
   name     = "my-rg-application-gateway-123"
-  location = "West US"
+  location = "westeurope"
 }
 
 # Create a application gateway in the web_servers resource group
