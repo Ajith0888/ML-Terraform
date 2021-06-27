@@ -161,6 +161,26 @@ resource "azurerm_application_gateway" "network" {
     protocol                       = "Http"
   }
 
+  http_listener {
+    name                           = "${azurerm_virtual_network.vnet.name}-be-htst-8008"
+    frontend_ip_configuration_name = "${azurerm_virtual_network.vnet.name}-feip"
+    frontend_port_name             = "${azurerm_virtual_network.vnet.name}-feport"
+    protocol                       = "Http"
+  }
+
+  http_listener {
+    name                           = "${azurerm_virtual_network.vnet.name}-be-htst-8001"
+    frontend_ip_configuration_name = "${azurerm_virtual_network.vnet.name}-feip"
+    frontend_port_name             = "${azurerm_virtual_network.vnet.name}-feport"
+    protocol                       = "Http"
+  }
+
+  http_listener {
+    name                           = "${azurerm_virtual_network.vnet.name}-be-htst-8007"
+    frontend_ip_configuration_name = "${azurerm_virtual_network.vnet.name}-feip"
+    frontend_port_name             = "${azurerm_virtual_network.vnet.name}-feport"
+    protocol                       = "Http"
+  }
   request_routing_rule {
     name                       = "${azurerm_virtual_network.vnet.name}-rqrt"
     rule_type                  = "Basic"
