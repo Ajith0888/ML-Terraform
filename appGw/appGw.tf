@@ -79,6 +79,79 @@ resource "azurerm_application_gateway" "network" {
     port                  = 8000
     protocol              = "Http"
     request_timeout       = 30
+    probe_name            = "health"
+  }
+
+  backend_http_settings {
+    name                  = "${azurerm_virtual_network.vnet.name}-be-htst-8001"
+    cookie_based_affinity = "Enabled"
+    port                  = 8001
+    protocol              = "Http"
+    request_timeout       = 30
+    probe_name            = "health"
+  }
+
+  backend_http_settings {
+    name                  = "${azurerm_virtual_network.vnet.name}-be-htst-8002"
+    cookie_based_affinity = "Enabled"
+    port                  = 8002
+    protocol              = "Http"
+    request_timeout       = 30
+    probe_name            = "health"
+  }
+
+  backend_http_settings {
+    name                  = "${azurerm_virtual_network.vnet.name}-be-htst-8003"
+    cookie_based_affinity = "Enabled"
+    port                  = 8003
+    protocol              = "Http"
+    request_timeout       = 30
+    probe_name            = "health"
+  }
+
+  backend_http_settings {
+    name                  = "${azurerm_virtual_network.vnet.name}-be-htst-8004"
+    cookie_based_affinity = "Enabled"
+    port                  = 8004
+    protocol              = "Http"
+    request_timeout       = 30
+    probe_name            = "health"
+  }
+
+  backend_http_settings {
+    name                  = "${azurerm_virtual_network.vnet.name}-be-htst-8005"
+    cookie_based_affinity = "Enabled"
+    port                  = 8005
+    protocol              = "Http"
+    request_timeout       = 30
+    probe_name            = "health"
+  }
+
+  backend_http_settings {
+    name                  = "${azurerm_virtual_network.vnet.name}-be-htst-8006"
+    cookie_based_affinity = "Enabled"
+    port                  = 8006
+    protocol              = "Http"
+    request_timeout       = 30
+    probe_name            = "health"
+  }
+
+  backend_http_settings {
+    name                  = "${azurerm_virtual_network.vnet.name}-be-htst-8007"
+    cookie_based_affinity = "Enabled"
+    port                  = 8007
+    protocol              = "Http"
+    request_timeout       = 30
+    probe_name            = "health"
+  }
+
+  backend_http_settings {
+    name                  = "${azurerm_virtual_network.vnet.name}-be-htst-8008"
+    cookie_based_affinity = "Enabled"
+    port                  = 8008
+    protocol              = "Http"
+    request_timeout       = 30
+    probe_name            = "health"
   }
 
   http_listener {
