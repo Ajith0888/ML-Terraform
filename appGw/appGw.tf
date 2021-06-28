@@ -56,6 +56,17 @@ resource "azurerm_application_gateway" "network" {
     port = 80
   }
 
+  frontend_port {
+    name = "port_8000"
+    port = 8000
+  }
+
+  frontend_port {
+    name = "port_8001"
+    port = 8001
+  }
+
+
   frontend_ip_configuration {
     name                 = "${azurerm_virtual_network.vnet.name}-feip"
     public_ip_address_id = azurerm_public_ip.pip.id
@@ -161,14 +172,19 @@ resource "azurerm_application_gateway" "network" {
     protocol                       = "Http"
   }
 
-
   http_listener {
-    name                           = "${azurerm_virtual_network.vnet.name}-be-htst-8008"
+    name                           = "listener-8000"
     frontend_ip_configuration_name = "${azurerm_virtual_network.vnet.name}-feip"
-    frontend_port_name             = "8008"
+    frontend_port_name             = "port_8000"
     protocol                       = "Http"
   }
 
+  http_listener {
+    name                           = "listener-8001"
+    frontend_ip_configuration_name = "${azurerm_virtual_network.vnet.name}-feip"
+    frontend_port_name             = "port_8001"
+    protocol                       = "Http"
+  }
 
   request_routing_rule {
     name                       = "${azurerm_virtual_network.vnet.name}-rqrt"
@@ -182,10 +198,20 @@ resource "azurerm_application_gateway" "network" {
   request_routing_rule {
     name                       = "rule-8000"
     rule_type                  = "Basic"
-    http_listener_name         = "${azurerm_virtual_network.vnet.name}-be-htst-8008"
+    http_listener_name         = "listener-8000"
     backend_address_pool_name  = "${azurerm_virtual_network.vnet.name}-beap"
-    backend_http_settings_name = "${azurerm_virtual_network.vnet.name}-be-htst-8008"
+    backend_http_settings_name = "${azurerm_virtual_network.vnet.name}-be-htst-8000"
   }
+
+
+  request_routing_rule {
+    name                       = "rule-8001"
+    rule_type                  = "Basic"
+    http_listener_name         = "listener-8001"
+    backend_address_pool_name  = "${azurerm_virtual_network.vnet.name}-beap"
+    backend_http_settings_name = "${azurerm_virtual_network.vnet.name}-be-htst-8001"
+  }
+
 
   probe {
     interval            = 30
