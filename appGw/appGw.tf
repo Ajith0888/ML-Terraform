@@ -1,3 +1,4 @@
+
 # Create a resource group
 resource "azurerm_resource_group" "rg" {
   name     = "my-rg-application-gateway-12345"
@@ -33,6 +34,32 @@ resource "azurerm_public_ip" "pip" {
   allocation_method   = "Static"
   sku                 = "Standard"
 }
+
+resource "azurerm_public_ip" "mlpublicip1" {
+  name                = "mlpublicip1"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method   = "Dynamic"
+  sku                 = "Basic"
+}
+
+
+resource "azurerm_public_ip" "mlpublicip2" {
+  name                = "mlpublicip2"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method   = "Dynamic"
+  sku                 = "Basic"
+}
+
+resource "azurerm_public_ip" "mlpublicip3" {
+  name                = "mlpublicip3"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method   = "Dynamic"
+  sku                 = "Basic"
+}
+
 
 # Create an application gateway
 resource "azurerm_application_gateway" "network" {
@@ -73,7 +100,8 @@ resource "azurerm_application_gateway" "network" {
   }
 
   backend_address_pool {
-    name = "${azurerm_virtual_network.vnet.name}-beap"
+    name         = "${azurerm_virtual_network.vnet.name}-beap"
+    ip_addresses = [local.backend_ip_1, local.backend_ip_2, local.backend_ip_3]
   }
 
   backend_http_settings {
@@ -225,4 +253,10 @@ resource "azurerm_application_gateway" "network" {
       status_code = ["200-401"]
     }
   }
+}
+
+locals {
+  backend_ip_1 = "10.6.0.4"
+  backend_ip_2 = "10.6.0.5"
+  backend_ip_3 = "10.6.0.6"
 }
