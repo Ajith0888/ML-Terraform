@@ -100,8 +100,8 @@ resource "azurerm_application_gateway" "network" {
   }
 
   backend_address_pool {
-    name         = "${azurerm_virtual_network.vnet.name}-beap"
-#    ip_addresses = [local.backend_ip_1, local.backend_ip_2, local.backend_ip_3]
+    name = "${azurerm_virtual_network.vnet.name}-beap"
+    #    ip_addresses = [local.backend_ip_1, local.backend_ip_2, local.backend_ip_3]
   }
 
   backend_http_settings {
@@ -259,4 +259,10 @@ locals {
   backend_ip_1 = "10.6.0.4"
   backend_ip_2 = "10.6.0.5"
   backend_ip_3 = "10.6.0.6"
+}
+
+resource "azurerm_network_interface_application_gateway_backend_address_pool_association" "appGwbeap" {
+  backend_address_pool_id = "${azurerm_virtual_network.vnet.name}-beap"
+  ip_configuration_name   = "nicappGwbeap"
+  network_interface_id    = ""
 }

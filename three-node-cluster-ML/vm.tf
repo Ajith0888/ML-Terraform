@@ -11,10 +11,10 @@ resource "azurerm_storage_account" "mlstorageaccount" {
 }
 
 resource "azurerm_availability_set" "avset" {
-  location = var.location
-  name = var.avset
-  resource_group_name = var.rgname
-  platform_fault_domain_count = 3
+  location                     = var.location
+  name                         = var.avset
+  resource_group_name          = var.rgname
+  platform_fault_domain_count  = 3
   platform_update_domain_count = 20
 }
 

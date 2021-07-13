@@ -3,6 +3,11 @@ variable "rgname" {
   default     = "rg-ajith-oneamerica"
   description = "Resource Name"
 }
+variable "appgwname" {
+  type        = string
+  default     = "mlapplicationGateway"
+  description = "AppGw Name"
+}
 variable "location" {
   type        = string
   description = "location where resources deployed"

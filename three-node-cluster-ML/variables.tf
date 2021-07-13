@@ -93,13 +93,13 @@ variable "vnetrange" {
 }
 
 variable "avset" {
-  type = string
+  type        = string
   description = "Availability Set"
-  default = "mlavset"
+  default     = "mlavset"
 }
 
 variable "appgw" {
-  type = string
+  type        = string
   description = "Availability Set"
-  default = "mlAppGateway"
+  default     = "mlAppGateway"
 }

@@ -33,3 +33,17 @@ resource "azurerm_public_ip" "mlpublicip3" {
   ]
 
 }
+
+resource "azurerm_public_ip" "mlappgwpip" {
+  name                = "mlappgwpip"
+  location            = var.location
+  resource_group_name = var.rgname
+  allocation_method   = "Static"
+  sku                 = "Standard"
+
+
+  depends_on = [
+    azurerm_network_security_group.mlnsg
+  ]
+
+}
