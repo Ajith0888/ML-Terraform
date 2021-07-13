@@ -101,7 +101,7 @@ resource "azurerm_application_gateway" "network" {
 
   backend_address_pool {
     name         = "${azurerm_virtual_network.vnet.name}-beap"
-    ip_addresses = [local.backend_ip_1, local.backend_ip_2, local.backend_ip_3]
+#    ip_addresses = [local.backend_ip_1, local.backend_ip_2, local.backend_ip_3]
   }
 
   backend_http_settings {

@@ -30,10 +30,28 @@ variable "publicip_name" {
   type    = string
   default = "mlpublicip"
 }
+variable "publicip_name2" {
+  type    = string
+  default = "mlpublicip2"
+}
+variable "publicip_name3" {
+  type    = string
+  default = "mlpublicip3"
+}
 
 variable "nicname" {
   type    = string
   default = "mlnic"
+}
+
+
+variable "nicname2" {
+  type    = string
+  default = "mlnic2"
+}
+variable "nicname3" {
+  type    = string
+  default = "mlnic3"
 }
 
 variable "storaccountname" {
@@ -65,7 +83,14 @@ variable "vmname" {
   type    = string
   default = "mlvm-node1"
 }
-
+variable "vmname2" {
+  type    = string
+  default = "mlvm-node2"
+}
+variable "vmname3" {
+  type    = string
+  default = "mlvm-node3"
+}
 variable "vmsku" {
   type    = string
   default = "Standard_DS1_v2"
