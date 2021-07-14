@@ -100,6 +100,10 @@ variable "vmsku" {
   type    = string
   default = "Standard_DS1_v2"
 }
+variable "avset" {
+  type    = string
+  default = "mlavset"
+}
 
 variable "vmusername" {
   type    = string
