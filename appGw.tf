@@ -1,9 +1,9 @@
 # Create an application gateway
 resource "azurerm_application_gateway" "network" {
   name                = var.appgwname
-  location                 = var.location
-  resource_group_name      = var.rgname
-  
+  location            = var.location
+  resource_group_name = var.rgname
+
   sku {
     name     = "Standard_v2"
     tier     = "Standard_v2"
@@ -37,7 +37,7 @@ resource "azurerm_application_gateway" "network" {
   }
 
   backend_address_pool {
-    name         = "${var.vnet_name}-beap"
+    name = "${var.vnet_name}-beap"
     #    ip_addresses = [local.backend_ip_1, local.backend_ip_2, local.backend_ip_3]
   }
 
@@ -286,5 +286,5 @@ resource "azurerm_application_gateway" "network" {
 resource "azurerm_network_interface_application_gateway_backend_address_pool_association" "appGwbeap" {
   backend_address_pool_id = "${var.vnet_name}-beap"
   ip_configuration_name   = "nicappGwbeap"
-  network_interface_id = "azurerm_network_interface.mlnic.id"
+  network_interface_id    = "azurerm_network_interface.mlnic.id"
 }
