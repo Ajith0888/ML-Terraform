@@ -1,8 +1,0 @@
-
-We have recycled the 2dnodes & 1enodes VMs each at a time. startup vm1 - security database should be up and running completely. For set replication..
-
-Please follow the below steps,
-#Restart the VMs from the Azure Portal with the following sequence. We need to ensure the Security forest present VM must be Up(Best practice instant of reboot do start & stop from Azure Portal ) and running smoothly.
-#Ensure start & stop one VM at a time.
-#Forest replica should be async/sync if not do failover.
-
