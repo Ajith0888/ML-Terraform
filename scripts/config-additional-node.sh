@@ -13,7 +13,7 @@
 #set input variables
 . /tmp/scripts/vars_env
 
-source /tmp/scripts/init.sh
+#source /tmp/scripts/init.sh
 
 # variables
 ENABLE_HA=$6
@@ -90,8 +90,11 @@ INFO "Checking server restart"
 restart_check $JOINING_HOST $TIMESTAMP $LINENO
 rm ./cluster-config.zip
 INFO "$JOINING_HOST successfully added to the cluster"
-
+HOST=$JOINING_HOST
 if [ "$ENABLE_HA" == "True" ]; then
   INFO "Configurating high availability on the cluster"
-  . ./tmp/scripts/high-availability.sh $USER "$PASS" $AUTH_MODE $BOOTSTRAP_HOST
+  #. /tmp/scripts/high-availability.sh $USER "$PASS" $AUTH_MODE $BOOTSTRAP_HOST
+  INFO "Sending forest configuration query to server"
+  $AUTH_CURL --user $USER:"$PASS" -X POST -d @/tmp/scripts/configure-ha.txt "http://${HOST}:8000/v1/eval" |& tee -a $LOGs
+  INFO "Forest local failover successfully configured"
 fi

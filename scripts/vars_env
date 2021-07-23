@@ -6,3 +6,5 @@ export N_RETRY=5
 export RETRY_INTERVAL=10
 export SEC_REALM="public"
 export BOOTSTRAP_HOST="mlvm-node1"
+export ENABLE_HA=True
+export JOINING_HOST=True
