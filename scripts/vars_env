@@ -1,0 +1,8 @@
+#Input Variables for the script to setup MarkLogic
+VARS_USER="ML_UNAME"
+VARS_PASS="ML_PASS"
+VARS_AUTH_MODE="anyauth"
+VARS_N_RETRY=5
+VARS_RETRY_INTERVAL=10
+VARS_SEC_REALM="public"
+VARS_BOOTSTRAP_HOST="HST_NAME"
