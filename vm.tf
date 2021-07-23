@@ -68,7 +68,7 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
   # Change permissions on bash script and execute on VM.
   provisioner "remote-exec" {
     inline = [
-      "chmod -v +x /tmp/scripts/",
+      "chmod -Rv +x /tmp/scripts/",
       "sudo sh /tmp/scripts/config-bootstrap-node.sh",
     ]
   }
