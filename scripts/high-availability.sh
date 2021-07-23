@@ -7,6 +7,9 @@
 # Usage        : sh high-availability.sh user password auth_mode hostname
 ######################################################################################################
 
+#set input variables
+. /tmp/scripts/vars_env
+
 source ./init.sh $1 "$2" $3
 
 HOST=$4

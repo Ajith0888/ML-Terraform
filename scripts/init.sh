@@ -8,7 +8,7 @@
 ######################################################################################################
 
 #set input variables
-. vars_env
+. /tmp/scripts/vars_env
 
 USER=$VARS_USER
 PASS=$VARS_PASS
