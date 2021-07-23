@@ -13,7 +13,7 @@
 #set input variables
 . /tmp/scripts/vars_env
 
-source ./init.sh
+source ./tmp/scripts/init.sh
 
 # variables
 ENABLE_HA=$6
@@ -93,5 +93,5 @@ INFO "$JOINING_HOST successfully added to the cluster"
 
 if [ "$ENABLE_HA" == "True" ]; then
   INFO "Configurating high availability on the cluster"
-  . ./high-availability.sh $USER "$PASS" $AUTH_MODE $BOOTSTRAP_HOST
+  . ./tmp/scripts/high-availability.sh $USER "$PASS" $AUTH_MODE $BOOTSTRAP_HOST
 fi
