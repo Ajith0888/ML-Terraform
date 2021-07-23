@@ -10,7 +10,10 @@
 #                enable-high-availability bootstrap-node joining-host
 ######################################################################################################
 
-source ./init.sh $1 "$2" $3 $4 $5
+#set input variables
+. vars_env
+
+source ./init.sh
 
 # variables
 ENABLE_HA=$6
