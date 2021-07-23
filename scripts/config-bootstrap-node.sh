@@ -11,7 +11,7 @@
 #set input variables
 . /tmp/scripts/vars_env
 
-source ./tmp/scripts/init.sh
+source /tmp/scripts/init.sh
 
 # variables
 SEC_REALM=$VARS_SEC_REALM

@@ -10,7 +10,7 @@
 #set input variables
 . /tmp/scripts/vars_env
 
-source ./tmp/scripts/init.sh $1 "$2" $3
+source /tmp/scripts/init.sh $1 "$2" $3
 
 HOST=$4
 

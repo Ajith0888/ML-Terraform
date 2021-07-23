@@ -13,7 +13,7 @@
 #set input variables
 . /tmp/scripts/vars_env
 
-source ./tmp/scripts/init.sh
+source /tmp/scripts/init.sh
 
 # variables
 ENABLE_HA=$6
