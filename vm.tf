@@ -51,8 +51,7 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
   provisioner "local-exec" {
     command     = <<-EOT
       echo -e "Updating the input variables"
-      sed -e "s/ML_UNAME/$var.mluname/g" -e "s/ML_PASS/$var.mlpass/g" -e "s/HST_NAME/$var.vmname/g" -i scripts/vars_env
-      chmod -v +x scripts/
+      sed -e "s/ML_UNAME/${var.mluname}/g" -e "s/ML_PASS/${var.mlpass}/g" -e "s/HST_NAME/${var.vmname}/g" -i scripts/vars_env
       #exec "command2"
     EOT
     interpreter = ["/bin/bash", "-c"]
@@ -63,13 +62,13 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
   # on the local linux box you are executing terraform
   # from.  The destination is on the New Azure VM.
   provisioner "file" {
-    source      = "scripts/"
-    destination = "/tmp/scripts"
+    source      = "scripts"
+    destination = "/tmp"
   }
   # Change permissions on bash script and execute on VM.
   provisioner "remote-exec" {
     inline = [
-      #"chmod +x /tmp/init-marklogic.sh",
+      "chmod -v +x /tmp/scripts/",
       "sudo sh /tmp/scripts/config-bootstrap-node.sh",
     ]
   }
