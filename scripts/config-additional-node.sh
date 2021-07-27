@@ -13,7 +13,7 @@
 #set input variables
 . /tmp/scripts/vars_env1
 
-#source /tmp/scripts/init.sh
+source /tmp/scripts/config-bootstrap-node.sh
 
 # variables
 #ENABLE_HA=$6
