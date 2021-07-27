@@ -8,6 +8,11 @@ variable "appgwname" {
   default     = "mlapplicationGateway"
   description = "AppGw Name"
 }
+variable "avset" {
+  type        = string
+  default     = "mlavset"
+  description = "AV Set Name"
+}
 variable "location" {
   type        = string
   description = "location where resources deployed"

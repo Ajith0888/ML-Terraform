@@ -11,14 +11,14 @@
 ######################################################################################################
 
 #set input variables
-. /tmp/scripts/vars_env
+. /tmp/scripts/vars_env1
 
 #source /tmp/scripts/init.sh
 
 # variables
-ENABLE_HA=$6
-BOOTSTRAP_HOST=$7
-JOINING_HOST=$8
+#ENABLE_HA=$6
+#BOOTSTRAP_HOST=$7
+#JOINING_HOST=$8
 
 #####################################################################################################
 #

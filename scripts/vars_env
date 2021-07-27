@@ -1,10 +1,10 @@
 #Input Variables for the script to setup MarkLogic
-export USER="admin"
-export PASS="admin"
+export USER="ML_UNAME"
+export PASS="ML_PASS"
 export AUTH_MODE="anyauth"
 export N_RETRY=5
 export RETRY_INTERVAL=10
 export SEC_REALM="public"
-export BOOTSTRAP_HOST="mlvm-node1"
+export BOOTSTRAP_HOST="HST_NAME"
 export ENABLE_HA=True
-export JOINING_HOST=True
+export JOINING_HOST="JOINING_HST"

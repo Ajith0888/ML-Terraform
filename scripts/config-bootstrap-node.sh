@@ -12,7 +12,7 @@
 ################################################################
 
 #set input variables
-. /tmp/scripts/vars_env
+. /tmp/scripts/vars_env1
 
 #######################################################
 # restart_check(hostname, baseline_timestamp, caller_lineno)
