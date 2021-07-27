@@ -17,6 +17,11 @@ resource "azurerm_availability_set" "avset" {
   platform_fault_domain_count  = 3
   platform_update_domain_count = 20
   managed                      = true
+
+  depends_on = [
+    azurerm_resource_group.mlrg
+  ]
+
 }
 
 resource "azurerm_linux_virtual_machine" "mlvm" {
@@ -159,7 +164,7 @@ resource "azurerm_linux_virtual_machine" "mlvm2" {
   provisioner "remote-exec" {
     inline = [
       "chmod -Rv +x /tmp/scripts/",
-      "sudo sh /tmp/scripts/config-bootstrap-node.sh",
+      "sudo sh /tmp/scripts/config-additional-node.sh",
     ]
   }
 

@@ -17,6 +17,11 @@ resource "azurerm_availability_set" "avset" {
   platform_fault_domain_count  = 3
   platform_update_domain_count = 20
   managed                      = true
+
+    depends_on = [
+    azurerm_resource_group.mlrg
+  ]
+  
 }
 
 
