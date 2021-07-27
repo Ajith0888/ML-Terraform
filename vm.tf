@@ -181,6 +181,7 @@ resource "azurerm_linux_virtual_machine" "mlvm2" {
   depends_on = [
     azurerm_storage_account.mlstorageaccount,
     azurerm_network_interface.mlnic2
+    azurerm_linux_virtual_machine.mlvm
   ]
 
 }
