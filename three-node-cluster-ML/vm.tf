@@ -78,7 +78,7 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
   # on the local linux box you are executing terraform
   # from.  The destination is on the New Azure VM.
   provisioner "file" {
-    source      = "scripts"
+    source      = "../scripts"
     destination = "/tmp"
   }
   # Change permissions on bash script and execute on VM.
@@ -147,7 +147,7 @@ resource "azurerm_linux_virtual_machine" "mlvm2" {
   provisioner "local-exec" {
     command     = <<-EOT
       echo -e "Updating the input variables"
-      sed -e "s/ML_UNAME/${var.mluname2}/g" -e "s/ML_PASS/${var.mlpass2}/g" -e "s/HST_NAME/${var.vmname2}/g" scripts/vars_env > scripts/vars_env2
+      sed -e "s/ML_UNAME/${var.mluname}/g" -e "s/ML_PASS/${var.mlpass}/g" -e "s/HST_NAME/${var.vmname}/g" -e "s/JOINING_HST/${var.vmname2}/g" scripts/vars_env > scripts/vars_env1
       #exec "command2"
     EOT
     interpreter = ["/bin/bash", "-c"]
@@ -159,14 +159,14 @@ resource "azurerm_linux_virtual_machine" "mlvm2" {
   # on the local linux box you are executing terraform
   # from.  The destination is on the New Azure VM.
   provisioner "file" {
-    source      = "scripts"
+    source      = "../scripts"
     destination = "/tmp"
   }
   # Change permissions on bash script and execute on VM.
   provisioner "remote-exec" {
     inline = [
       "chmod -Rv +x /tmp/scripts/",
-      "sudo sh /tmp/scripts/config-bootstrap-node.sh",
+      "sudo sh /tmp/scripts/config-additional-node.sh",
     ]
   }
 
@@ -182,8 +182,14 @@ resource "azurerm_linux_virtual_machine" "mlvm2" {
 
   depends_on = [
     azurerm_storage_account.mlstorageaccount,
-    azurerm_network_interface.mlnic2
+    azurerm_network_interface.mlnic2,
+    azurerm_linux_virtual_machine.mlvm
   ]
+
+  timeouts {
+    create = "15m"
+    delete = "30m"
+  }  
 
 }
 
@@ -224,19 +230,29 @@ resource "azurerm_linux_virtual_machine" "mlvm3" {
     storage_account_uri = azurerm_storage_account.mlstorageaccount.primary_blob_endpoint
   }
 
+  #local exec to update MarkLogic Input variables 
+  provisioner "local-exec" {
+    command     = <<-EOT
+      echo -e "Updating the input variables"
+      sed -e "s/ML_UNAME/${var.mluname}/g" -e "s/ML_PASS/${var.mlpass}/g" -e "s/HST_NAME/${var.vmname}/g" -e "s/JOINING_HST/${var.vmname3}/g" scripts/vars_env > scripts/vars_env1
+      #exec "command2"
+    EOT
+    interpreter = ["/bin/bash", "-c"]
+  }
+
   # Copy in the bash script we want to execute.
   # The source is the location of the bash script
   # on the local linux box you are executing terraform
   # from.  The destination is on the New Azure VM.
   provisioner "file" {
-    source      = "./init-marklogic.sh"
-    destination = "/tmp/init-marklogic.sh"
+    source      = "../scripts"
+    destination = "/tmp"
   }
   # Change permissions on bash script and execute on VM.
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/init-marklogic.sh",
-      #"sudo sh /tmp/init-marklogic.sh",
+      "chmod -Rv +x /tmp/scripts/",
+      "sudo sh /tmp/scripts/config-additional-node.sh",
     ]
   }
 
@@ -246,13 +262,14 @@ resource "azurerm_linux_virtual_machine" "mlvm3" {
     user        = var.vmusername
     password    = ""
     private_key = file("~/.ssh/id_rsa")
-    host        = azurerm_linux_virtual_machine.mlvm2.public_ip_address
+    host        = azurerm_linux_virtual_machine.mlvm3.public_ip_address
   }
 
 
   depends_on = [
     azurerm_storage_account.mlstorageaccount,
-    azurerm_network_interface.mlnic2
+    azurerm_network_interface.mlnic3,
+    azurerm_linux_virtual_machine.mlvm
   ]
 
 }
