@@ -102,6 +102,12 @@ resource "azurerm_linux_virtual_machine" "mlvm" {
     azurerm_network_interface.mlnic
   ]
 
+  timeouts {
+    create = "15m"
+    delete = "30m"
+  }
+
+
 }
 
 resource "azurerm_linux_virtual_machine" "mlvm2" {
@@ -184,5 +190,9 @@ resource "azurerm_linux_virtual_machine" "mlvm2" {
     azurerm_linux_virtual_machine.mlvm
   ]
 
+  timeouts {
+    create = "15m"
+    delete = "30m"
+  }
 }
 

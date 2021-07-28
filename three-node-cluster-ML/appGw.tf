@@ -318,6 +318,11 @@ resource "azurerm_application_gateway" "network" {
       status_code = ["200-401"]
     }
   }
+
+  timeouts {
+    create = "30m"
+    delete = "45m"
+  }
 }
 
 locals {
