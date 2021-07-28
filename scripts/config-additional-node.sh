@@ -32,10 +32,3 @@ then
 echo -e "Existing Script. Seems MarkLogic timestamp looks similar, Login and check on Server:`hostname`"
 fi
 echo -e "$JOINING_HOST successfully added to the cluster"
-if [ "$ENABLE_HA" == "True" ]; then
-  echo -e "Configurating high availability on the cluster"
-  #. /tmp/scripts/high-availability.sh $USER "$PASS" $AUTH_MODE $BOOTSTRAP_HOST
-  echo -e "Sending forest configuration query to server"
-  $AUTH_CURL --user $USER:"$PASS" -X POST -d @/tmp/scripts/configure-ha.txt "http://${BOOTSTRAP_HOST}:8000/v1/eval" |& tee -a $LOGs
-  echo -e "Forest local failover successfully configured"
-fi
