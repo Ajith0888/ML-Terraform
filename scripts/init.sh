@@ -8,21 +8,21 @@
 ######################################################################################################
 
 #set input variables
-. /tmp/scripts/vars_env
+. /tmp/scripts/vars_env1
 
-USER=$VARS_USER
-PASS=$VARS_PASS
-AUTH_MODE=$VARS_AUTH_MODE
-N_RETRY=$VARS_N_RETRY
-RETRY_INTERVAL=$VARS_RETRY_INTERVAL
+#USER=$VARS_USER
+#PASS=$VARS_PASS
+#AUTH_MODE=$VARS_AUTH_MODE
+#N_RETRY=$VARS_N_RETRY
+#RETRY_INTERVAL=$VARS_RETRY_INTERVAL
 # log file to record all the activities
-LOG_PREFIX=`caller | awk '{print \$2}' | sed -e 's/\.sh//g' | sed -e 's/\.\///g'`
+LOG_PREFIX=scripts/config-additional-node #`caller | awk '{print \$2}' | sed -e 's/\.sh//g' | sed -e 's/\.\///g'`
 LOG="/tmp/$LOG_PREFIX-$(date +"%Y%m%d%h%m%s").txt"
 # Suppress progress meter, but still show errors
 CURL="curl -s -S"
 # add authentication related options, required once security is initialized
 AUTH_CURL="${CURL} --${AUTH_MODE}"
-
+HST=`hostname`
 ######################################################################################################
 # Function     : restart_check
 # Description  : Use the timestamp service to detect a server restart, given a baseline timestamp.
@@ -31,12 +31,12 @@ AUTH_CURL="${CURL} --${AUTH_MODE}"
 ######################################################################################################
 
 function restart_check {
-  LAST_START=`$AUTH_CURL --user $USER:"$PASS" "http://$1:8001/admin/v1/timestamp" |& tee -a $LOG`
+  LAST_START=`$AUTH_CURL --user $USER:"$PASS" "http://$HST:8001/admin/v1/timestamp" |& tee -a $LOG`
   for i in `seq 1 ${N_RETRY}`; do
     if [ "$2" == "$LAST_START" ] || [ "$LAST_START" == "" ]; then
       WARN "Server didn't restart. Retry in $RETRY_INTERVAL seconds"
       sleep ${RETRY_INTERVAL}
-	  LAST_START=`$AUTH_CURL --user $USER:"$PASS" "http://$1:8001/admin/v1/timestamp" |& tee -a $LOG`
+	  LAST_START=`$AUTH_CURL --user $USER:"$PASS" "http://$HST:8001/admin/v1/timestamp" |& tee -a $LOG`
     else
       INFO "Server successfully restarted"
       return 0

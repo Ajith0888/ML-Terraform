@@ -164,7 +164,7 @@ resource "azurerm_linux_virtual_machine" "mlvm2" {
   provisioner "remote-exec" {
     inline = [
       "chmod -Rv +x /tmp/scripts/",
-      "sudo sh /tmp/scripts/config-additional-node.sh",
+      #"sudo sh /tmp/scripts/config-additional-node.sh",
     ]
   }
 
@@ -180,7 +180,7 @@ resource "azurerm_linux_virtual_machine" "mlvm2" {
 
   depends_on = [
     azurerm_storage_account.mlstorageaccount,
-    azurerm_network_interface.mlnic2
+    azurerm_network_interface.mlnic2,
     azurerm_linux_virtual_machine.mlvm
   ]
 
