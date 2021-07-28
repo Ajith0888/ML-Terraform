@@ -126,3 +126,14 @@ variable "vnetrange" {
   description = "range of the vnet"
   default     = "10.0.0.0/16"
 }
+
+
+variable "mluname" {
+  type    = string
+  default = "admin"
+}
+
+variable "mlpass" {
+  type    = string
+  default = "admin"
+}
