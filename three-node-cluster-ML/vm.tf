@@ -189,7 +189,7 @@ resource "azurerm_linux_virtual_machine" "mlvm2" {
   timeouts {
     create = "15m"
     delete = "30m"
-  }  
+  }
 
 }
 

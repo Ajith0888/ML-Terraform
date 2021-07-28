@@ -118,7 +118,7 @@ variable "vmpasswd" {
 variable "subnets" {
   type        = list(string)
   description = "subnets to be created"
-  default     = ["app", "mldb"]
+  default     = ["appGw", "mldb"]
 }
 
 variable "vnetrange" {

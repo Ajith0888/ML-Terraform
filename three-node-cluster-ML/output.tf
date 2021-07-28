@@ -29,7 +29,7 @@ output "MLappGwPublicIP" {
   value       = azurerm_public_ip.mlappgwpip.id
   sensitive   = true
   description = "Azure App Gw Public IP"
-  depends_on  = [
-      azurerm_public_ip.mlappgwpip
+  depends_on = [
+    azurerm_public_ip.mlappgwpip
   ]
 }
