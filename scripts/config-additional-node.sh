@@ -21,7 +21,7 @@ curl -o /tmp/scripts/joiner-config.xml -X GET -H "Accept: application/xml" http:
 echo -e "Adding host $JOINING_HOST to the cluster $BOOTSTRAP_HOST"
 #Send the joining host's configuration info to the cluster host, and then receive the cluster configuration in return
 echo -e "Sending the cluster config data to the joining host"
-curl --anyauth --user ${USER}:${PASS} -X POST -d "group=Default" --data-urlencode "server-config@/tmp/scripts/joiner-config.xml" -H "Content-type: application/x-www-form-urlencoded" -o cluster-config.zip http://${BOOTSTRAP_HOST}:8001/admin/v1/cluster-config
+curl --anyauth --user ${USER}:${PASS} -X POST -d "group=Default" --data-urlencode "server-config@/tmp/scripts/joiner-config.xml" -H "Content-type: application/x-www-form-urlencoded" -o /tmp/scripts/cluster-config.zip http://${BOOTSTRAP_HOST}:8001/admin/v1/cluster-config
 #To complete the joining sequence, post the cluster configuration .zip file to the joining host by entering
 curl -X POST -H "Content-type: application/zip" --data-binary @/tmp/scripts/cluster-config.zip http://${JOINING_HOST}:8001/admin/v1/cluster-config
 #To check for a new timestamp
