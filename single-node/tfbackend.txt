@@ -1,0 +1,21 @@
+#Below steps will helps to configure a new or use the existing state file. Update the below values as per your subscriptions 
+RESOURCE_GROUP_NAME=$rgname
+STORAGE_ACCOUNT_NAME=$storaccountname
+CONTAINER_NAME=$Blobname
+LOCATION=$location
+#create a separate resourceGroup only for terraform backend. This helps to manage the resources. 
+az group create --name $RESOURCE_GROUP_NAME --location $LOCATION
+#If already storage acct is created ignore the below steps
+az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME --sku Standard_LRS --encryption-services blob
+#Get the storage keys
+ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME --account-name $STORAGE_ACCOUNT_NAME --query '[0].value' -o tsv)
+#If already blob is created ignore the below steps
+az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME --account-key $ACCOUNT_KEY
+#Display the Secrect keys
+echo $ACCOUNT_KEY
+#Helps to TF create or access the exixting state file
+export ARM_ACCESS_KEY=$ACCOUNT_KEY
+#Import the Existing RG
+#Only one resources can be imported in terraform
+terraform import azurerm_resource_group.$resource_group_name "/subscriptions/$subscriptions_id/resourceGroups/$resource_group_name"
+
